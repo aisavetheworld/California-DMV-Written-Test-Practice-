@@ -37,6 +37,20 @@ body {
   color: #374151;
 }
 
+.project-link {
+  margin-top: 8px;
+}
+
+.project-link a {
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.project-link a:hover {
+  text-decoration: underline;
+}
+
 .panel {
   background: var(--panel);
   border: 1px solid var(--border);
