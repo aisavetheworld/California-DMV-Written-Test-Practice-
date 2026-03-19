@@ -1,0 +1,250 @@
+[
+  {
+    "page_num": 1,
+    "total_pages": 8,
+    "page_url": "https://example.com/sample/1",
+    "image_url": "",
+    "question_zh_hant": "在沒有交通號誌的十字路口，兩車同時到達，誰應先行？",
+    "question_zh_hans": "在没有交通号志的十字路口，两车同时到达，谁应先行？",
+    "question_en": "At an uncontrolled intersection, two cars arrive at the same time. Who should go first?",
+    "options_zh_hant": [
+      "左側車輛先行。",
+      "右側車輛先行。",
+      "按喇叭較大聲者先行。",
+      "兩車都直接通過。"
+    ],
+    "options_zh_hans": [
+      "左侧车辆先行。",
+      "右侧车辆先行。",
+      "按喇叭较大声者先行。",
+      "两车都直接通过。"
+    ],
+    "options_en": [
+      "The vehicle on the left goes first.",
+      "The vehicle on the right goes first.",
+      "The one that honks louder goes first.",
+      "Both vehicles proceed immediately."
+    ],
+    "correct_option_no": 2,
+    "correct_option_zh_hant": "右側車輛先行。",
+    "correct_option_zh_hans": "右侧车辆先行。",
+    "correct_option_en": "The vehicle on the right goes first."
+  },
+  {
+    "page_num": 2,
+    "total_pages": 8,
+    "page_url": "https://example.com/sample/2",
+    "image_url": "",
+    "question_zh_hant": "看到八角形紅色 STOP 標誌時，正確做法是什麼？",
+    "question_zh_hans": "看到八角形红色 STOP 标志时，正确做法是什么？",
+    "question_en": "What is the correct action when you see an octagonal red STOP sign?",
+    "options_zh_hant": [
+      "減速後直接通過。",
+      "完全停車，確認安全後再前進。",
+      "只在有行人時停車。",
+      "夜間可不停車。"
+    ],
+    "options_zh_hans": [
+      "减速后直接通过。",
+      "完全停车，确认安全后再前进。",
+      "只在有行人时停车。",
+      "夜间可不停车。"
+    ],
+    "options_en": [
+      "Slow down and pass through.",
+      "Come to a full stop, then proceed when safe.",
+      "Stop only if pedestrians are present.",
+      "At night you may skip stopping."
+    ],
+    "correct_option_no": 2,
+    "correct_option_zh_hant": "完全停車，確認安全後再前進。",
+    "correct_option_zh_hans": "完全停车，确认安全后再前进。",
+    "correct_option_en": "Come to a full stop, then proceed when safe."
+  },
+  {
+    "page_num": 3,
+    "total_pages": 8,
+    "page_url": "https://example.com/sample/3",
+    "image_url": "",
+    "question_zh_hant": "飲酒後準備開車，下列哪一項最安全？",
+    "question_zh_hans": "饮酒后准备开车，下列哪一项最安全？",
+    "question_en": "After drinking alcohol, which option is the safest before driving?",
+    "options_zh_hant": [
+      "喝咖啡後立刻開車。",
+      "短距離開車通常沒問題。",
+      "改搭計程車或由清醒駕駛代駕。",
+      "開窗戶讓自己清醒即可。"
+    ],
+    "options_zh_hans": [
+      "喝咖啡后立刻开车。",
+      "短距离开车通常没问题。",
+      "改搭计程车或由清醒驾驶代驾。",
+      "开窗户让自己清醒即可。"
+    ],
+    "options_en": [
+      "Drink coffee and drive right away.",
+      "Short-distance driving is usually fine.",
+      "Use a taxi or let a sober driver drive.",
+      "Open windows to sober up and drive."
+    ],
+    "correct_option_no": 3,
+    "correct_option_zh_hant": "改搭計程車或由清醒駕駛代駕。",
+    "correct_option_zh_hans": "改搭计程车或由清醒驾驶代驾。",
+    "correct_option_en": "Use a taxi or let a sober driver drive."
+  },
+  {
+    "page_num": 4,
+    "total_pages": 8,
+    "page_url": "https://example.com/sample/4",
+    "image_url": "",
+    "question_zh_hant": "平行停車時，車輪最接近路緣石的距離應該如何？",
+    "question_zh_hans": "平行停车时，车轮最接近路缘石的距离应该如何？",
+    "question_en": "When parallel parking, how should your wheel distance from the curb be?",
+    "options_zh_hant": [
+      "越遠越好，方便起步。",
+      "可壓上路緣石以防滑動。",
+      "盡量靠近且不壓路緣石。",
+      "與路緣石保持至少 1 公尺。"
+    ],
+    "options_zh_hans": [
+      "越远越好，方便起步。",
+      "可压上路缘石以防滑动。",
+      "尽量靠近且不压路缘石。",
+      "与路缘石保持至少 1 公尺。"
+    ],
+    "options_en": [
+      "Farther is better for easier departure.",
+      "You may rest on the curb to prevent rolling.",
+      "Stay close to the curb without touching it.",
+      "Keep at least 1 meter from the curb."
+    ],
+    "correct_option_no": 3,
+    "correct_option_zh_hant": "盡量靠近且不壓路緣石。",
+    "correct_option_zh_hans": "尽量靠近且不压路缘石。",
+    "correct_option_en": "Stay close to the curb without touching it."
+  },
+  {
+    "page_num": 5,
+    "total_pages": 8,
+    "page_url": "https://example.com/sample/5",
+    "image_url": "",
+    "question_zh_hant": "右轉前遇到自行車道時，較佳做法是？",
+    "question_zh_hans": "右转前遇到自行车道时，较佳做法是？",
+    "question_en": "Before making a right turn across a bike lane, what is the best practice?",
+    "options_zh_hant": [
+      "不看後視鏡，直接右轉。",
+      "在安全情況下提前併入，再完成右轉。",
+      "長按喇叭後快速切過去。",
+      "停在車道中央等待他人讓行。"
+    ],
+    "options_zh_hans": [
+      "不看后视镜，直接右转。",
+      "在安全情况下提前并入，再完成右转。",
+      "长按喇叭后快速切过去。",
+      "停在车道中央等待他人让行。"
+    ],
+    "options_en": [
+      "Turn right without checking mirrors.",
+      "Merge early when safe, then complete the right turn.",
+      "Hold the horn and cut across quickly.",
+      "Stop in the middle lane and wait for others to yield."
+    ],
+    "correct_option_no": 2,
+    "correct_option_zh_hant": "在安全情況下提前併入，再完成右轉。",
+    "correct_option_zh_hans": "在安全情况下提前并入，再完成右转。",
+    "correct_option_en": "Merge early when safe, then complete the right turn."
+  },
+  {
+    "page_num": 6,
+    "total_pages": 8,
+    "page_url": "https://example.com/sample/6",
+    "image_url": "",
+    "question_zh_hant": "下雨天高速行駛時，最重要的是？",
+    "question_zh_hans": "下雨天高速行驶时，最重要的是？",
+    "question_en": "When driving at high speed in rain, what is most important?",
+    "options_zh_hant": [
+      "提高車速盡快到達。",
+      "縮短跟車距離避免被插隊。",
+      "降低車速並增加跟車距離。",
+      "只需開啟雙閃，不必減速。"
+    ],
+    "options_zh_hans": [
+      "提高车速尽快到达。",
+      "缩短跟车距离避免被插队。",
+      "降低车速并增加跟车距离。",
+      "只需开启双闪，不必减速。"
+    ],
+    "options_en": [
+      "Increase speed to arrive sooner.",
+      "Shorten following distance to avoid being cut off.",
+      "Reduce speed and increase following distance.",
+      "Only turn on hazard lights; no need to slow down."
+    ],
+    "correct_option_no": 3,
+    "correct_option_zh_hant": "降低車速並增加跟車距離。",
+    "correct_option_zh_hans": "降低车速并增加跟车距离。",
+    "correct_option_en": "Reduce speed and increase following distance."
+  },
+  {
+    "page_num": 7,
+    "total_pages": 8,
+    "page_url": "https://example.com/sample/7",
+    "image_url": "",
+    "question_zh_hant": "綠燈亮起但前方路口堵塞時，應如何處理？",
+    "question_zh_hans": "绿灯亮起但前方路口堵塞时，应如何处理？",
+    "question_en": "If the light is green but the intersection ahead is blocked, what should you do?",
+    "options_zh_hant": [
+      "進入路口等待慢慢通過。",
+      "先停在停止線後，待有空間再進入。",
+      "鳴笛催促前車讓路。",
+      "借用對向車道繞過。"
+    ],
+    "options_zh_hans": [
+      "进入路口等待慢慢通过。",
+      "先停在停止线后，待有空间再进入。",
+      "鸣笛催促前车让路。",
+      "借用对向车道绕过。"
+    ],
+    "options_en": [
+      "Enter the intersection and wait inside.",
+      "Stay behind the stop line until there is space ahead.",
+      "Use the horn to pressure the car in front.",
+      "Use the opposite lane to go around."
+    ],
+    "correct_option_no": 2,
+    "correct_option_zh_hant": "先停在停止線後，待有空間再進入。",
+    "correct_option_zh_hans": "先停在停止线后，待有空间再进入。",
+    "correct_option_en": "Stay behind the stop line until there is space ahead."
+  },
+  {
+    "page_num": 8,
+    "total_pages": 8,
+    "page_url": "https://example.com/sample/8",
+    "image_url": "",
+    "question_zh_hant": "接近有人行橫道且有行人等待通過時，你應該？",
+    "question_zh_hans": "接近有人行横道且有行人等待通过时，你应该？",
+    "question_en": "When approaching a crosswalk with pedestrians waiting to cross, you should:",
+    "options_zh_hant": [
+      "保持車速通過，行人會讓車。",
+      "減速觀察，必要時停車讓行。",
+      "切到左側車道加速通過。",
+      "只在白天讓行，夜晚可先行。"
+    ],
+    "options_zh_hans": [
+      "保持车速通过，行人会让车。",
+      "减速观察，必要时停车让行。",
+      "切到左侧车道加速通过。",
+      "只在白天让行，夜晚可先行。"
+    ],
+    "options_en": [
+      "Maintain speed; pedestrians will yield.",
+      "Slow down and stop when necessary to yield.",
+      "Move left and accelerate through.",
+      "Yield only in daytime, not at night."
+    ],
+    "correct_option_no": 2,
+    "correct_option_zh_hant": "減速觀察，必要時停車讓行。",
+    "correct_option_zh_hans": "减速观察，必要时停车让行。",
+    "correct_option_en": "Slow down and stop when necessary to yield."
+  }
+]

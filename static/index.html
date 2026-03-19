@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>美国加州驾考笔试题库模拟题（2026最新）</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="container">
+    <header class="topbar">
+      <h1>美国加州驾考笔试题库模拟题（2026最新）</h1>
+      <p>题库来源自作业搜集至网络 亲测大量与真题重复 刷完即可考试。</p>
+    </header>
+
+    <section class="panel controls">
+      <div class="row">
+        <label for="lang-select">语言</label>
+        <select id="lang-select">
+          <option value="zh-hans">简体中文</option>
+          <option value="zh-hant">繁體中文</option>
+          <option value="en">English</option>
+        </select>
+
+        <label for="mode-select">模式</label>
+        <select id="mode-select">
+          <option value="practice">练习模式</option>
+          <option value="exam">模拟考试</option>
+        </select>
+
+        <label for="question-count">题量</label>
+        <input id="question-count" type="number" min="1" step="1" />
+
+        <label for="time-limit">限时(分钟)</label>
+        <input id="time-limit" type="number" min="1" step="1" value="45" />
+
+        <label class="checkbox">
+          <input type="checkbox" id="shuffle-checkbox">
+          随机顺序
+        </label>
+
+        <button id="start-btn">开始</button>
+        <button id="submit-btn">交卷</button>
+        <button id="show-wrong-btn">查看错题</button>
+      </div>
+    </section>
+
+    <section class="panel score" id="score-panel">
+      <div>模式: <span id="mode-label">-</span></div>
+      <div>剩余时间: <span id="timer">-</span></div>
+      <div>总题数: <span id="total-count">-</span></div>
+      <div>已答: <span id="answered-count">-</span></div>
+      <div>正确: <span id="correct-count">-</span></div>
+      <div>错误: <span id="wrong-count">-</span></div>
+      <div>正确率: <span id="accuracy">-</span></div>
+      <div>进度: <span id="progress">-</span></div>
+    </section>
+
+    <section class="panel question-panel" id="question-panel">
+      <div class="q-header">
+        <span id="q-position">题目 -/-</span>
+        <span id="q-id">ID: -</span>
+      </div>
+      <div id="q-tags" class="tags"></div>
+      <h2 id="q-text">请点击“开始”</h2>
+      <img id="q-image" alt="题目配图" />
+      <div id="options"></div>
+      <p id="answer-result"></p>
+      <div class="row">
+        <button id="prev-btn">上一题</button>
+        <button id="next-btn">下一题</button>
+      </div>
+    </section>
+
+    <section class="panel knowledge-panel" id="knowledge-panel">
+      <h3>知识点统计</h3>
+      <div id="knowledge-list">请先开始练习。</div>
+    </section>
+
+    <section class="panel result-panel hidden" id="result-panel">
+      <h3>考试结果</h3>
+      <p id="result-score">得分: -</p>
+      <p id="result-pass">结果: -</p>
+      <p id="result-unanswered">未作答: -</p>
+    </section>
+
+    <section class="panel wrong-panel hidden" id="wrong-panel">
+      <h3>错题回顾</h3>
+      <div id="wrong-list"></div>
+    </section>
+
+    <section class="panel note">
+      <p>
+        说明：本项目仅用于个人学习。题库来源于公开网页收集，你需要自行确认数据使用范围与合规要求。
+      </p>
+    </section>
+
+    <section class="panel links">
+      <h3>加州驾考常用链接</h3>
+      <ul>
+        <li><a href="https://www.dmv.ca.gov/portal/file/california-driver-handbook-chinese-pdf/" target="_blank" rel="noopener noreferrer">加州驾驶员手册（中文 PDF）</a></li>
+        <li><a href="https://www.dmv.ca.gov/portal/handbook/california-driver-handbook/" target="_blank" rel="noopener noreferrer">California Driver Handbook（英文）</a></li>
+        <li><a href="https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/driver-licenses-dl/" target="_blank" rel="noopener noreferrer">加州驾照申请总入口（DMV 官方）</a></li>
+        <li><a href="https://www.dmv.ca.gov/portal/appointments/select-location/" target="_blank" rel="noopener noreferrer">DMV 预约入口</a></li>
+        <li><a href="https://i94.cbp.dhs.gov/home" target="_blank" rel="noopener noreferrer">I-94 打印入口（CBP）</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

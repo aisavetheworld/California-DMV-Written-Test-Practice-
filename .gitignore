@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+app.db
+.env
+output/
+output_test/
+.DS_Store
+.pytest_cache/
+.venv/
+dmv_quiz_scraper.py
