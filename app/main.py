@@ -17,7 +17,6 @@ from pydantic import BaseModel, Field
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_DATA_PATH = PROJECT_ROOT / "output" / "dmv_quiz_bilingual.json"
 SAMPLE_DATA_PATH = PROJECT_ROOT / "sample_data" / "dmv_quiz_bilingual.json"
-DB_PATH = PROJECT_ROOT / "app.db"
 STATIC_DIR = PROJECT_ROOT / "static"
 
 SUPPORTED_LANGS = {"zh-hant", "zh-hans", "en"}
@@ -81,6 +80,21 @@ def resolve_data_path() -> Path:
 
 
 DATA_PATH = resolve_data_path()
+
+
+def resolve_db_path() -> Path:
+    env_value = os.environ.get("DMV_DB_PATH", "").strip()
+    if env_value:
+        candidate = Path(env_value)
+        if not candidate.is_absolute():
+            candidate = PROJECT_ROOT / candidate
+        return candidate
+    if os.environ.get("VERCEL"):
+        return Path("/tmp/app.db")
+    return PROJECT_ROOT / "app.db"
+
+
+DB_PATH = resolve_db_path()
 
 
 def load_questions() -> dict[int, dict[str, Any]]:

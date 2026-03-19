@@ -80,6 +80,26 @@ Open in browser:
 http://127.0.0.1:8000
 ```
 
+## Deploy on Vercel (Free)
+
+This project is ready for one-click Vercel deployment:
+
+- `api/index.py` exposes the FastAPI app entrypoint for Vercel.
+- `vercel.json` routes all requests to the Python runtime.
+- Database path auto-switches to `/tmp/app.db` on Vercel serverless runtime.
+
+Steps:
+
+1. Push this repo to GitHub.
+2. Go to Vercel and import the GitHub repository.
+3. Keep default build settings (Vercel will detect `vercel.json`).
+4. Deploy.
+
+Notes:
+
+- On free/serverless deployments, SQLite in `/tmp` is ephemeral, so session history and wrong-question records are not persistent across cold starts.
+- For persistent user data, move storage to a managed database (for example Supabase Postgres, Neon, or PlanetScale).
+
 ## Core APIs
 
 - `GET /api/meta`
