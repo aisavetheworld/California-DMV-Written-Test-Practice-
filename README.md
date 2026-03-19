@@ -51,15 +51,21 @@ pip install -r requirements.txt
 ## Dataset Usage
 
 - For open-source usage, this repository ships with `sample_data/` only.
-- To use your private full dataset, set `DMV_DATA_PATH` to your local JSON file path.
+- To use your private full dataset, use either:
+  - `DMV_DATA_PATH` for a local JSON path
+  - `DMV_DATA_URL` for a private remote JSON URL
+- Optional auth headers for remote source:
+  - `DMV_DATA_BEARER_TOKEN` -> sent as `Authorization: Bearer <token>`
+  - `DMV_DATA_API_KEY` -> sent as `x-api-key: <key>`
 
 ## Run the Web App
 
 By default, the app reads dataset in this order:
 
 1. `DMV_DATA_PATH` (if provided)
-2. `output/dmv_quiz_bilingual.json` (if exists)
-3. `sample_data/dmv_quiz_bilingual.json` (fallback for open-source usage)
+2. `DMV_DATA_URL` (if provided)
+3. `output/dmv_quiz_bilingual.json` (if exists)
+4. `sample_data/dmv_quiz_bilingual.json` (fallback for open-source usage)
 
 Run:
 
@@ -71,6 +77,14 @@ Optional: force a specific dataset path:
 
 ```bash
 export DMV_DATA_PATH="sample_data/dmv_quiz_bilingual.json"
+uvicorn app.main:app --reload
+```
+
+Optional: load from a private remote URL:
+
+```bash
+export DMV_DATA_URL="https://<private-storage>/dmv_quiz_bilingual.json"
+export DMV_DATA_BEARER_TOKEN="<your-token>"
 uvicorn app.main:app --reload
 ```
 
@@ -99,6 +113,19 @@ Notes:
 
 - On free/serverless deployments, SQLite in `/tmp` is ephemeral, so session history and wrong-question records are not persistent across cold starts.
 - For persistent user data, move storage to a managed database (for example Supabase Postgres, Neon, or PlanetScale).
+
+### Open-source code + private full dataset (Recommended)
+
+This lets your GitHub repo remain clean (code + sample only), while your deployed site uses full 305-question data.
+
+1. Put `dmv_quiz_bilingual.json` in a private storage bucket/service.
+2. Generate a private access URL (or API endpoint) for that JSON.
+3. In Vercel project settings -> Environment Variables, add:
+   - `DMV_DATA_URL`
+   - `DMV_DATA_BEARER_TOKEN` (if your endpoint requires bearer auth)
+   - `DMV_DATA_API_KEY` (if your endpoint requires API key auth)
+4. Redeploy.
+5. Check `GET /api/meta` and verify `total_questions` is `305`.
 
 ## Core APIs
 

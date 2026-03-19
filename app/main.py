@@ -8,6 +8,9 @@ import uuid
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
+from urllib.error import URLError
+from urllib.parse import urlparse
+from urllib.request import Request, urlopen
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import FileResponse
@@ -18,6 +21,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_DATA_PATH = PROJECT_ROOT / "output" / "dmv_quiz_bilingual.json"
 SAMPLE_DATA_PATH = PROJECT_ROOT / "sample_data" / "dmv_quiz_bilingual.json"
 STATIC_DIR = PROJECT_ROOT / "static"
+REMOTE_DATA_TIMEOUT_SECONDS = 30
 
 SUPPORTED_LANGS = {"zh-hant", "zh-hans", "en"}
 SUPPORTED_MODES = {"practice", "exam"}
@@ -67,19 +71,49 @@ def utc_now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-def resolve_data_path() -> Path:
-    env_value = os.environ.get("DMV_DATA_PATH", "").strip()
-    if env_value:
-        candidate = Path(env_value)
-        if not candidate.is_absolute():
-            candidate = PROJECT_ROOT / candidate
-        return candidate
-    if DEFAULT_DATA_PATH.exists():
-        return DEFAULT_DATA_PATH
-    return SAMPLE_DATA_PATH
+def resolve_data_path(env_value: str) -> Path:
+    candidate = Path(env_value)
+    if not candidate.is_absolute():
+        candidate = PROJECT_ROOT / candidate
+    return candidate
 
 
-DATA_PATH = resolve_data_path()
+def _dataset_from_file(path: Path) -> list[dict[str, Any]]:
+    if not path.exists():
+        raise RuntimeError(f"Dataset not found: {path}")
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, list):
+        raise RuntimeError(f"Dataset JSON must be a list: {path}")
+    return payload
+
+
+def _dataset_from_url(url: str) -> list[dict[str, Any]]:
+    headers = {"Accept": "application/json"}
+    bearer = os.environ.get("DMV_DATA_BEARER_TOKEN", "").strip()
+    api_key = os.environ.get("DMV_DATA_API_KEY", "").strip()
+    if bearer:
+        headers["Authorization"] = f"Bearer {bearer}"
+    if api_key:
+        headers["x-api-key"] = api_key
+
+    req = Request(url, headers=headers, method="GET")
+    try:
+        with urlopen(req, timeout=REMOTE_DATA_TIMEOUT_SECONDS) as resp:
+            body = resp.read().decode("utf-8")
+    except URLError as exc:
+        raise RuntimeError(f"Failed to fetch dataset URL: {url}") from exc
+
+    payload = json.loads(body)
+    if not isinstance(payload, list):
+        raise RuntimeError("Remote dataset JSON must be a list")
+    return payload
+
+
+def _safe_url_label(url: str) -> str:
+    parsed = urlparse(url)
+    if parsed.scheme and parsed.netloc:
+        return f"{parsed.scheme}://{parsed.netloc}{parsed.path}"
+    return "remote-url"
 
 
 def resolve_db_path() -> Path:
@@ -97,15 +131,31 @@ def resolve_db_path() -> Path:
 DB_PATH = resolve_db_path()
 
 
-def load_questions() -> dict[int, dict[str, Any]]:
-    if not DATA_PATH.exists():
-        raise RuntimeError(f"Dataset not found: {DATA_PATH}")
-    raw = json.loads(DATA_PATH.read_text(encoding="utf-8"))
+def load_questions() -> tuple[dict[int, dict[str, Any]], str]:
+    env_path = os.environ.get("DMV_DATA_PATH", "").strip()
+    env_url = os.environ.get("DMV_DATA_URL", "").strip()
+
+    if env_path:
+        path = resolve_data_path(env_path)
+        raw = _dataset_from_file(path)
+        source = f"file:{path}"
+    elif env_url:
+        raw = _dataset_from_url(env_url)
+        source = f"url:{_safe_url_label(env_url)}"
+    elif DEFAULT_DATA_PATH.exists():
+        raw = _dataset_from_file(DEFAULT_DATA_PATH)
+        source = f"file:{DEFAULT_DATA_PATH}"
+    elif SAMPLE_DATA_PATH.exists():
+        raw = _dataset_from_file(SAMPLE_DATA_PATH)
+        source = f"file:{SAMPLE_DATA_PATH}"
+    else:
+        raise RuntimeError("Dataset not found. Set DMV_DATA_PATH or DMV_DATA_URL.")
+
     out: dict[int, dict[str, Any]] = {}
     for row in raw:
         page_num = int(row["page_num"])
         out[page_num] = row
-    return out
+    return out, source
 
 
 def _classify_tags(row: dict[str, Any]) -> list[str]:
@@ -126,7 +176,7 @@ def _tag_label(tag: str, lang: str) -> str:
     return labels.get(lang, labels["en"])
 
 
-QUESTIONS = load_questions()
+QUESTIONS, DATA_SOURCE = load_questions()
 QUESTION_IDS = sorted(QUESTIONS.keys())
 QUESTION_TAGS: dict[int, list[str]] = {qid: _classify_tags(QUESTIONS[qid]) for qid in QUESTION_IDS}
 DATASET_TAG_COUNTS: dict[str, int] = {tag: 0 for tag in TAG_LABELS}
@@ -435,6 +485,7 @@ def meta() -> dict[str, Any]:
         "total_questions": len(QUESTION_IDS),
         "min_question_id": min(QUESTION_IDS),
         "max_question_id": max(QUESTION_IDS),
+        "data_source": DATA_SOURCE,
         "supported_languages": sorted(SUPPORTED_LANGS),
         "supported_modes": sorted(SUPPORTED_MODES),
         "default_exam_question_count": DEFAULT_EXAM_QUESTION_COUNT,
