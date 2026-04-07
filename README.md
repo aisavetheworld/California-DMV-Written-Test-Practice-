@@ -109,6 +109,19 @@ Steps:
 3. Keep default build settings (Vercel will detect `vercel.json`).
 4. Deploy.
 
+### Enable Vercel Web Analytics
+
+This repository already includes the client tracking script in `static/index.html`.
+
+To turn analytics on for the deployed site:
+
+1. Open the project in Vercel.
+2. Go to `Analytics` and click `Enable`.
+3. Redeploy the project.
+4. Open the production site and confirm the browser loads `/_vercel/insights/script.js`.
+
+After a short delay, visitor and page view data will start appearing in the Vercel Analytics dashboard.
+
 Notes:
 
 - On free/serverless deployments, SQLite in `/tmp` is ephemeral, so session history and wrong-question records are not persistent across cold starts.
